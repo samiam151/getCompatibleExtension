@@ -1,5 +1,5 @@
 #Get Compatible Audio Extension
-## The Web Audio API Version of canPlayType() function
+####The Web Audio API Version of canPlayType() function
 
 ###What This Is
 This little function I wrote helped me, so I figured it might help someone else as well. This is a simple function that, when run, returns the extension of most compatible audio codec for the browser in which it is run. For example, when run in Firefox, ".mp3" is returned. 
@@ -17,4 +17,18 @@ The problem of loading the right file using <audio> is to indicate multiple sour
 </audio> 
 ```
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis soluta nostrum dolor, perspiciatis dicta nemo nulla ea doloribus. Optio, officia.
+Instead, we can use this function to FIND OUT what extension we need, and just grab that, usually through an XMLHttpRequest.
+
+Let's say we have our audio files on the ready,
+* handclap.mp3
+* handclap.wav
+* handclap.ogg
+
+Here's what we can do:
+```
+var url = 'assets/handclap' + getCompatibleExtension();
+
+var request = new XMLHttpRequest();
+request.open('GET', url, someFunction);
+```
+In Chrome, if we `console.log(url)`, we would get back `assets/handclap.wav`. Simple, but helpful! 
